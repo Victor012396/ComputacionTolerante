@@ -1,0 +1,10 @@
+//Importante, instalar:
+//*Maven
+//*JDK (Java Develpoment Kit)
+//*Quarkus
+
+
+mvn clean package
+
+//Loop de desarrollador
+mvn compile quarkus:dev
