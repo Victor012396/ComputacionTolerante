@@ -6,5 +6,3 @@ prefect server start --postgres-port 5430
 
 prefect agent local start
 
-Oye Victor....
-

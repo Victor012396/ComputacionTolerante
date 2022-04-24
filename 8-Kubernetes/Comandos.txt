@@ -1,0 +1,20 @@
+A partir del Dockerfile creado, se crea el contenedor con la siguiente información:
+PD:Se declara con el nombre de tu cuenta de DockerHub
+docker build -t victor001/react-web-app .
+
+Despues, procedemos a subir el contendor a DockerHub:
+docker login
+docker push victor/react-web-app
+
+Tras instalar Minikube con Chocolately.
+Se puede usar el siguiente comando para ver los Pods del cluster.
+minikube kubectl -- get po -A
+
+Este comando es para iniciar el cluster local:
+minikube dashboard
+
+El proyecto subido a Docker
+minikube kubectl -- apply -f deployment.yml
+
+
+minikube service node-web-app

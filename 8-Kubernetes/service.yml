@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-web-service
+spec:
+  type: LoadBalancer
+  ports: 80
+  targetPort: 3000
+selector:
+  name: node-web-app

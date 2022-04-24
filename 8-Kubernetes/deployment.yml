@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-web-application
+spec:
+  selector:
+    mathLabels:
+      app: node-web-app
+  replicas: 5    
+  template:
+    metadata:
+      labels:
+        name: node-web-app
+    specs:
+      containers:
+      - name: application
+        image: victor001/node-web-application
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000

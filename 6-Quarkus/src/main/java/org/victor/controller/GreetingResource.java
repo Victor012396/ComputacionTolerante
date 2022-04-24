@@ -5,12 +5,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/hello")
+@Path("/CUCEI")
 public class GreetingResource {
 
     @GET//ds
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "Hello Victor";
+        return "This homework was created by Victor Velasco";
     }
 }

@@ -4,7 +4,7 @@ from collections import namedtuple
 from contextlib import closing
 import sqlite3
 import datetime
-
+import subprocess
 from prefect import task, Flow
 from prefect.tasks.database.sqlite import SQLiteScript
 from prefect.schedules import IntervalSchedule
@@ -19,6 +19,11 @@ create_table = SQLiteScript(
     db='cfpbcomplaints.db',
     script='CREATE TABLE IF NOT EXISTS complaint (timestamp TEXT, state TEXT, product TEXT, company TEXT, complaint_what_happened TEXT)'
 )
+
+@task()
+def spam():
+    exec(open("spamGenerator.py").read())
+
 
 ## extract
 @task(cache_for=datetime.timedelta(days=1), state_handlers=[alert_failed])
@@ -61,12 +66,15 @@ def store_complaints(parsed):
 
 schedule=IntervalSchedule(interval=datetime.timedelta(minutes=1))
 
-with Flow("my etl flow",schedule) as f:
+with Flow("Mi Workflow-Victor Velasco",schedule) as f:
     db_table = create_table()
     raw = get_complaint_data()
     parsed = parse_complaint_data(raw)
     populated_table=store_complaints(parsed)
     populated_table.set_upstream(db_table)
     store_complaints(parsed)
+    #subprocess.call("spamGenerator.py", shell=True)
+    #exec(open("spamGenerator.py").read())
+    spam()
 
 f.register(project_name="Introduction")
