@@ -17,4 +17,8 @@ El proyecto subido a Docker
 minikube kubectl -- apply -f deployment.yml
 
 
-minikube service node-web-app
+minikube service node-web-app --url
+
+minikube -p minikube docker-env --shell powershell | docker build -t agenda-victor .
+minikube -p minikube docker-env --shell powershell | docker run -dp 3000:3000 agenda-victor
+
